@@ -55,7 +55,6 @@ app.post("/api/notes", function(req, res) {
 })
 
 //DELETE - /api/notes/:id -> query.param (containing ID) -> read db.json -> rewrite db.json
-
 app.delete("api/notes/:id", function(req, res){
     
 })
