@@ -36,7 +36,7 @@ app.get("/api/notes", function(req, res){
 //POST - /api/notes -> req.body -> db.json
 app.post("/api/notes", function(req, res){
     var notes = req.body;
-    var notesList = JSON.parse(fs.readFile("/db/db.json"))
+    var notesList = JSON.parse(fs.readFileSync("/db/db.json"))
     let notesLength = (notesList.length).toString();
 
     notes.id = notesLength;
