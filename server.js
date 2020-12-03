@@ -14,24 +14,24 @@ var PORT = 3000;
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 //Sets up Express to serve static files
-app.use(express.static("public"));
+app.use(express.static("/public"));
 
 //Basic Routes
 //Basic route - sends user to index page
 app.get("*", function(req, res){
-    res.sendFile(path.join(__dirname, "public/index.html"));
+    res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 
 //Basic route - sends user to notes page
 app.get("/notes", function(req, res){
-    res.sendFile(path.join(__dirname, "public/notes.html"));
+    res.sendFile(path.join(__dirname, "/public/notes.html"));
 });
 
 //API Routes
 //GET /api/notes - should read db.json
 app.get("/api/notes", function(req, res){
-    fs.readFile(path.join(__dirname, "db/db.json"))
-})
+    fs.readFile(path.join(__dirname, "/db/db.json"));
+});
 
 //POST - /api/notes -> req.body -> db.json
 
