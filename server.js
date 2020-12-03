@@ -34,9 +34,23 @@ app.get("/api/notes", function(req, res){
 });
 
 //POST - /api/notes -> req.body -> db.json
+app.post("/api/notes", function(req, res){
+    var notes = req.body;
+    var notesList = JSON.parse(fs.readFile("/db/db.json"))
+    let notesLength = (notesList.length).toString();
+
+    notes.id = notesLength;
+    notesList.push(notes);
+
+    //Return new note to client
+    fs.writeFileSync("/db/db.json", JSON.stringify(notesList));
+    res.json(notesList);
+})
 
 //DELETE - /api/notes/:id -> query.param (containing ID) -> read db.json -> rewrite db.json
-
+app.delete("api/notes/:id", function(req, res){
+    
+})
 
 
 //Listener
