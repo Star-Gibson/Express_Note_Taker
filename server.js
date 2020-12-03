@@ -17,18 +17,18 @@ app.use(express.json());
 app.use(express.static("/public"));
 
 //Basic Routes
-//Basic route - sends user to index page
+//Basic route - sends to index page
 app.get("*", function(req, res){
     res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 
-//Basic route - sends user to notes page
+//Basic route - sends to notes page
 app.get("/notes", function(req, res){
     res.sendFile(path.join(__dirname, "/public/notes.html"));
 });
 
 //API Routes
-//GET /api/notes - should read db.json
+//GET /api/notes - should read db.json and return notes as JSON
 app.get("/api/notes", function(req, res){
     fs.readFile(path.join(__dirname, "/db/db.json"));
 });
