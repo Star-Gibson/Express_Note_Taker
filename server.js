@@ -16,9 +16,9 @@ app.use(express.json());
 //Sets up Express to serve static files
 app.use(express.static("public"));
 
-//Routes
+//Basic Routes
 //Basic route - sends user to index page
-app.get("/", function(req, res){
+app.get("*", function(req, res){
     res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
@@ -26,6 +26,17 @@ app.get("/", function(req, res){
 app.get("/notes", function(req, res){
     res.sendFile(path.join(__dirname, "public/notes.html"));
 });
+
+//API Routes
+//GET /api/notes - should read db.json
+app.get("/api/notes", function(req, res){
+    fs.readFile(path.join(__dirname, "db/db.json"))
+})
+
+//POST - /api/notes -> req.body -> db.json
+
+//DELETE - /api/notes/:id -> query.param (containing ID) -> read db.json -> rewrite db.json
+
 
 
 //Listener
