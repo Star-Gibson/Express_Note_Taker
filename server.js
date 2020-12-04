@@ -64,10 +64,8 @@ app.post("/api/notes", (req, res) => {
 
 //DELETE - /api/notes/:id -> query.param (containing ID) -> read db.json -> rewrite db.json
 app.delete("api/notes/:id", function(req, res){
-
-})
-
-
+       
+    });
 
 //Listener
 app.listen(PORT, function(){
