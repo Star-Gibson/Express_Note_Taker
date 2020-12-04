@@ -58,12 +58,13 @@ app.post("/api/notes", (req, res) => {
       });  
       console.log(db); //Check to see db.json array
       console.log(notes); //Check to see if ID is given.
+      
 })
 
 
 //DELETE - /api/notes/:id -> query.param (containing ID) -> read db.json -> rewrite db.json
 app.delete("api/notes/:id", function(req, res){
-    
+
 })
 
 
