@@ -8,7 +8,7 @@ var fs = require("fs");
 //Require DataBase
 var db = require("./db/db.json");
 
-//Sets up the Express App
+//Sets up the Express Server
 var app = express();
 //Heroku PORT or default to PORT 3000
 var PORT = process.env.PORT || 3000; 
