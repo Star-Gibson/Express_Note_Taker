@@ -1,5 +1,4 @@
 # Express_Note_Taker
-# Team_Generator
 [![Generic badge](https://img.shields.io/badge/License-MIT-blue.svg)](https://shields.io/)
 
 ## Project Description: 
