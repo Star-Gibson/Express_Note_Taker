@@ -39,11 +39,8 @@ app.get("*", (req, res) => {
 //POST - /api/notes -> req.body -> db.json
 app.post("/api/notes", (req, res) => {
     //Gives ID's to each note.    
-    const notes = {
-        id: db.length + 1,
-        title: req.body.title,
-        text: req.body.text
-      };   
+    let notes = req.body
+    notes.id = (db.length).toString();
     //Takes user input and puts into Database
     db.push(notes);
     fs.writeFile("./db/db.json", JSON.stringify(db),function (err) {
@@ -56,17 +53,31 @@ app.post("/api/notes", (req, res) => {
             console.log("Success") //console.log("Success")
         }
       });  
-      console.log(db); //Check to see db.json array
+      
       console.log(notes); //Check to see if ID is given.
+      console.log(db[0]);
       
 })
 
 
-//DELETE - /api/notes/:id -> query.param (containing ID) -> read db.json -> rewrite db.json
-app.delete("api/notes/:id", function(req, res){
-       
+//DELETE - /api/notes/:id -> query.param (containing ID) -> call id of objects -> splice -> rewrite db.json
+app.delete('/api/notes/:id', function(req, res){
+    const noteID = req.params.id;
+    console.log(noteID);
+    const eraseNote = db.findIndex(element => parseInt(element.id) === parseInt(noteID));
+    db.splice(eraseNote, 1);
+    fs.writeFile('./db/db.json', JSON.stringify(db), function(err){
+        if (err) {
+            console.log("err"); // "console.log(err)"
+            res.sendStatus(404);
+          } 
+          else {
+              res.sendStatus(200); 
+              console.log("Success") //console.log("Success")
+          }
     });
-
+  });
+ 
 //Listener
 app.listen(PORT, function(){
     console.log("App listening on PORT " + PORT);
